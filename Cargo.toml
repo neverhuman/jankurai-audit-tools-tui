@@ -1,0 +1,7 @@
+[workspace]
+members = [
+  "crates/tuiwright",
+  "crates/tuiwright-cli",
+  "examples/tuiwright-demo",
+]
+resolver = "2"
