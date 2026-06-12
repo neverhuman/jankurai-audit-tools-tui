@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
+# Required lane: the lightweight gate that must pass on every push.
+# Verifies the workspace manifest resolves against the locked dependency graph
+# and runs the workspace test suite.
 set -euo pipefail
-cd "$(dirname "${BASH_SOURCE[0]}")/../.."
+source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
+cd "$REPO_ROOT"
 
+log "required lane: cargo metadata + workspace tests"
+cargo metadata --no-deps --format-version 1 >/dev/null
 cargo test --workspace --locked

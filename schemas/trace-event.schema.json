@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/neverhuman/jankurai-tools-tui/schemas/trace-event.schema.json",
+  "title": "Tuiwright trace event",
+  "description": "One JSONL line written by tuiwright::trace::TraceWriter. A trace file is a sequence of these objects, one per line, recorded during a TUI session.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ts_ms", "kind", "data"],
+  "properties": {
+    "ts_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Milliseconds elapsed since the trace started (monotonic)."
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Event kind, e.g. `spawn`, `press`, `wait_for_text`, `screenshot`, `resize`."
+    },
+    "data": {
+      "description": "Arbitrary structured payload for the event; shape depends on `kind`."
+    }
+  }
+}

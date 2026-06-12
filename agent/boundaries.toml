@@ -1,0 +1,32 @@
+# Boundary manifest for jankurai-tools-tui.
+# This is a single-purpose Rust workspace: the tuiwright TUI testing library,
+# its CLI, and an example demo. Only the Rust domain block applies here; web,
+# database, queue, and Python surfaces are not part of this repo.
+# See docs/boundaries.md for prose.
+
+[stack]
+id = "rust-ts-vite-react-postgres-bounded-python"
+version = "0.5.0"
+
+[rust]
+# Pure terminal-model and encoding logic lives under crates/tuiwright/src. These
+# modules parse output and encode input deterministically and must not reach for
+# ambient effects; effects (PTY spawn, filesystem, time) belong in the session
+# and record layers.
+domain_paths = [
+  "crates/tuiwright/src/screen.rs",
+  "crates/tuiwright/src/locator.rs",
+  "crates/tuiwright/src/input.rs",
+]
+forbidden_domain_imports = [
+  "std::env",
+  "std::net",
+  "std::time::SystemTime",
+  "rand::",
+  "sqlx::",
+  "diesel::",
+  "reqwest::",
+  "rdkafka::",
+  "tracing::",
+  "log::",
+]

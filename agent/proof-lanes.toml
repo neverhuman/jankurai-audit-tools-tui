@@ -1,0 +1,85 @@
+# Proof lanes for jankurai-tools-tui. Every lane command runs in this repo
+# alone and produces the artifacts it declares. The broader lane vocabulary is
+# documented in docs/testing.md.
+
+[[lane]]
+name = "required"
+command = "bash scripts/ci-local.sh required"
+purpose = "lightweight gate: workspace metadata resolves and tests pass"
+command_id = "lane.required"
+kind = "validation"
+cost = 5
+rules_covered = ["HLT-003-OWNERLESS-PATH", "HLT-004-UNMAPPED-PROOF"]
+required_artifacts = []
+timeout_seconds = 900
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "fast"
+command = "bash ops/ci/fast.sh"
+purpose = "deterministic fast lane: cargo check + cargo nextest run --workspace"
+command_id = "lane.fast"
+kind = "validation"
+cost = 8
+rules_covered = ["HLT-004-UNMAPPED-PROOF", "HLT-008-FALSE-GREEN-RISK"]
+required_artifacts = []
+timeout_seconds = 900
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "security"
+command = "bash ops/ci/security.sh"
+purpose = "secret scanning (gitleaks) plus dependency vulnerability scanning (cargo audit)"
+command_id = "lane.security"
+kind = "security"
+cost = 20
+rules_covered = ["HLT-009-GENERATED-SECURITY", "HLT-016-SUPPLY-CHAIN-DRIFT"]
+required_artifacts = []
+timeout_seconds = 1800
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "audit"
+command = "bash ops/ci/audit.sh"
+purpose = "jankurai self-audit: write .jankurai/repo-score.json and .jankurai/repo-score.md"
+command_id = "lane.audit"
+kind = "audit"
+cost = 10
+rules_covered = ["HLT-003-OWNERLESS-PATH", "HLT-004-UNMAPPED-PROOF", "HLT-008-FALSE-GREEN-RISK"]
+required_artifacts = [".jankurai/repo-score.json", ".jankurai/repo-score.md"]
+timeout_seconds = 900
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "tool-adoption"
+command = "bash ops/ci/tool-adoption.sh"
+purpose = "run adopted jankurai tool lanes and emit evidence under target/jankurai/"
+command_id = "lane.tool-adoption"
+kind = "analysis"
+cost = 15
+rules_covered = ["HLT-016-SUPPLY-CHAIN-DRIFT", "HLT-043-COPY-PASTE-BAD-BEHAVIOR"]
+required_artifacts = [
+  "target/jankurai/repo-score.json",
+  "target/jankurai/copy-code.json",
+  "target/jankurai/security/evidence.json",
+]
+timeout_seconds = 1800
+requires_network = false
+destructive = false
+
+[[lane]]
+name = "full"
+command = "just check"
+purpose = "release/merge gate: format, lint, fast lane, security, and self-audit"
+command_id = "lane.full"
+kind = "release"
+cost = 50
+supersedes = ["fast", "security", "audit"]
+required_artifacts = [".jankurai/repo-score.json", ".jankurai/repo-score.md"]
+timeout_seconds = 3600
+requires_network = false
+destructive = false
