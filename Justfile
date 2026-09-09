@@ -37,6 +37,11 @@ lint:
 test:
     cargo nextest run --workspace
 
+# Narrow per-package proof loop.
+narrow:
+    cargo check -p tuiwright --locked
+    cargo nextest run -p tuiwright
+
 # Security lane: the full supply-chain posture in one entrypoint.
 # gitleaks scans for committed secrets; cargo audit checks the Rust dependency
 # tree; syft emits a CycloneDX SBOM; actionlint and zizmor lint the workflows.
@@ -49,7 +54,7 @@ security:
 
 # Jankurai self-audit lane: writes the repo-score artifacts that CI uploads.
 audit:
-    /home/ubuntu/jankurai-split/jankurai/.fusion/target/debug/jankurai audit . --no-score-history --json .jankurai/repo-score.json --md .jankurai/repo-score.md
+    jankurai audit . --no-score-history --json .jankurai/repo-score.json --md .jankurai/repo-score.md
 
 # Print the declared version.
 versions:

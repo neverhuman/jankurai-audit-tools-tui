@@ -5,7 +5,7 @@ use clap::{Parser, Subcommand};
 use tuiwright::{GifOptions, Page, SpawnConfig};
 
 #[derive(Parser)]
-#[command(name = "tuiwright", about = "Playwright-style TUI testing CLI")]
+#[command(name = "tuiwright", version, about = "Playwright-style TUI testing CLI")]
 struct Cli {
     #[command(subcommand)]
     command: Commands,

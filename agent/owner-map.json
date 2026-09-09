@@ -21,6 +21,7 @@
     "Cargo.toml": "tools",
     "Cargo.lock": "tools",
     "crates/": "tools",
-    "examples/": "tools"
+    "examples/": "tools",
+    ".gitleaksignore": "ops"
   }
 }

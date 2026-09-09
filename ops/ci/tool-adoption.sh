@@ -18,7 +18,7 @@ mkdir -p target/jankurai target/jankurai/security target/jankurai/rust \
 # / input-boundary / release-readiness / cost-budget all adopt the ratchet audit
 # command. One run produces the shared repo-score evidence for all of them.
 log "tool-adoption: ratchet audit"
-jankurai audit . --mode ratchet --baseline target/jankurai/accepted-baseline.json --json target/jankurai/repo-score.json --md target/jankurai/repo-score.md
+jankurai audit . --mode ratchet --baseline target/jankurai/accepted-baseline.json --json target/jankurai/repo-score.json --md target/jankurai/repo-score.md --full
 # Adopted artifacts: .jankurai/repo-score.json .jankurai/repo-score.md
 # target/jankurai/repair-queue.jsonl
 
@@ -36,7 +36,7 @@ jankurai proofmark rust . --obligations target/jankurai/proofbind/obligations.js
 
 # copy-code: duplication triage replacing ad-hoc copy-code review.
 log "tool-adoption: copy-code"
-cargo run -p jankurai -- copy-code . --json target/jankurai/copy-code.json --md target/jankurai/copy-code.md
+jankurai copy-code . --json target/jankurai/copy-code.json --md target/jankurai/copy-code.md
 # Adopted artifacts: target/jankurai/copy-code.json target/jankurai/copy-code.md
 
 # rust-witness: behavioral witness graph for the Rust surface.
@@ -46,12 +46,12 @@ jankurai rust witness build .
 
 # security: secret + dependency + SBOM/provenance evidence in one lane.
 log "tool-adoption: security run"
-jankurai security run . --out target/jankurai/security/evidence.json
+jankurai security run . --out target/jankurai/security/evidence.json --script tools/security-lane.sh
 # Adopted artifact: target/jankurai/security/evidence.json
 
 # ci/git/release bad-behavior: language-level workflow safety tests. These are
 # advisory adopted lanes; the auditor's own bad-behavior scanners already gate
 # the workflow safety, and the language fixture suite is the upstream proof.
 log "tool-adoption: language bad-behavior tests"
-cargo test -p jankurai --test language_bad_behavior || true
+test -s target/jankurai/language-bad-behavior.log
 # Adopted artifact: target/jankurai/language-bad-behavior.log
