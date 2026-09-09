@@ -1,6 +1,6 @@
 {
-  "report_fingerprint": "sha256:57692db24b6bb55a2376f253e4a8d78ed7ec097518faf268a73af45b2c1a8a06",
-  "input_fingerprint": "sha256:ba71f852cd1fad28988d76c452cbecac6591a36c49019c0ac3187eacaf83fce2",
+  "report_fingerprint": "sha256:3658f08420666796d7f88b02b3b9b9b769fb57cb32f14b6c3396c53445d52836",
+  "input_fingerprint": "sha256:c0190eeff8830e8e493c6bb1e8122c0fa64898acec54644f84041ca0410208cc",
   "policy_fingerprint": "sha256:c8f1657d5fb88e41f339ef381eafbfba0fe52262443338357b4afb7ceed51509",
   "manifest_fingerprints": {
     "owner_map": "sha256:c6a63b1fea3a41d38df65d6e10c00bc26907040f0d242d2155016d92816e8370",
@@ -10,8 +10,8 @@
     "proof_lanes": "sha256:1606e33059f76ab7b5f8690d09ce7ee79e91dc905a2d7c5eece49b60c68eebf7",
     "standard_version": "sha256:40a582442a7421be1ce42f7b46828767232243b84d90ae9ba7d36efc870b9882"
   },
-  "dirty_worktree": true,
-  "generated_at": "1788918287",
+  "dirty_worktree": false,
+  "generated_at": "1788927812",
   "schema_url": "schemas/repo-score.schema.json",
   "standard": "jankurai",
   "standard_version": "0.9.0",
@@ -21,29 +21,31 @@
   "target_stack_id": "rust-ts-vite-react-postgres-bounded-python",
   "target_stack": "Rust core + TypeScript/React/Vite + PostgreSQL + generated contracts + exception-only Python AI/data service",
   "claimed_conformance_level": "HL3",
-  "observed_conformance_level": "HL3",
-  "conformance_decision": "pass",
-  "conformance_blockers": [],
-  "repo": "/home/ubuntu/jankurai-split/jankurai-tools-tui",
-  "run_id": "1788918287",
-  "started_at": "1788918287",
-  "elapsed_ms": 258,
+  "observed_conformance_level": "HL2",
+  "conformance_decision": "block",
+  "conformance_blockers": [
+    "HLT-002-GENERATED-MUTATION on agent/generated-zones.toml"
+  ],
+  "repo": ".",
+  "run_id": "1788927812",
+  "started_at": "1788927812",
+  "elapsed_ms": 329,
   "scope": {
     "mode": "full",
     "paths": []
   },
-  "score": 90,
-  "raw_score": 90,
+  "score": 95,
+  "raw_score": 95,
   "decision": {
     "status": "advisory",
     "minimum_score": 85,
     "passed": true,
-    "hard_findings": 0,
-    "soft_findings": 3,
+    "hard_findings": 1,
+    "soft_findings": 1,
     "ratchet": {
-      "baseline_score": 90,
+      "baseline_score": 95,
       "allowed_drop": 0,
-      "passed": true,
+      "passed": false,
       "score_delta": 0,
       "baseline_report_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
       "baseline_input_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
@@ -54,14 +56,14 @@
     }
   },
   "git": {
-    "head": "f14d814",
+    "head": "eeb2d97",
     "base": null,
     "changed_files": 0,
     "mode": "full",
-    "dirty_worktree": true
+    "dirty_worktree": false
   },
   "policy": {
-    "path": "/home/ubuntu/jankurai-split/jankurai-tools-tui/agent/audit-policy.toml",
+    "path": "./agent/audit-policy.toml",
     "minimum_score": 85,
     "fail_on": [
       "critical",
@@ -73,7 +75,7 @@
     ],
     "mode": "advisory",
     "standard_version": "0.9.0",
-    "auditor_version": "1.6.11",
+    "auditor_version": "1.7.0",
     "schema_version": "1.9.0",
     "paper_edition": "2026.05-ed8",
     "target_stack": "rust-ts-vite-react-postgres-bounded-python"
@@ -287,13 +289,15 @@
     {
       "name": "Contract and boundary integrity",
       "weight": 13,
-      "score": 83,
-      "weighted_points": 10.79,
+      "score": 100,
+      "weighted_points": 13.0,
       "evidence": [
+        "contract surface found",
         "generated contract artifacts found",
         "boundary manifest present",
         "machine-readable schemas present",
         "Rust typed boundary helpers found",
+        "all contract sources have generated zone entries",
         "schema/tooling contract posture is clean"
       ],
       "notes": []
@@ -354,9 +358,11 @@
     {
       "name": "Data truth and workflow safety",
       "weight": 8,
-      "score": 50,
-      "weighted_points": 4.0,
-      "evidence": [],
+      "score": 90,
+      "weighted_points": 7.2,
+      "evidence": [
+        "no adopter product DB surface; standards/tooling repo classification is explicit"
+      ],
       "notes": []
     },
     {
@@ -438,7 +444,9 @@
     "has_rendered_ux_lane": true,
     "missing_categories": [],
     "evidence": {
-      "accessibility": [],
+      "accessibility": [
+        "agent/baselines/main.repo-score.json"
+      ],
       "api_mocks": [],
       "artifact_backed_proof": [
         "crates/tuiwright-cli/Cargo.toml",
@@ -455,7 +463,9 @@
         "crates/tuiwright/src/lib.rs",
         "crates/tuiwright/tests/smoke.rs"
       ],
-      "storybook": [],
+      "storybook": [
+        "agent/baselines/main.repo-score.json"
+      ],
       "visual_review": []
     }
   },
@@ -1009,9 +1019,9 @@
   "copy_code": {
     "schema_version": "1.1.0",
     "generated_by": "jankurai copy-code",
-    "generated_at": "2026-09-09T01:44:47.633322996+00:00",
-    "repo": "/home/ubuntu/jankurai-split/jankurai-tools-tui",
-    "auditor_version": "1.6.11",
+    "generated_at": "2026-09-09T04:23:31.696279284+00:00",
+    "repo": ".",
+    "auditor_version": "1.7.0",
     "status": "review",
     "policy": {
       "active_source_only": true,
@@ -1047,7 +1057,7 @@
       ]
     },
     "summary": {
-      "files_scanned": 69,
+      "files_scanned": 73,
       "files_considered": 14,
       "active_files": 14,
       "exact_file_classes": 0,
@@ -1392,71 +1402,38 @@
       "owner": "ops"
     },
     {
-      "severity": "medium",
-      "category": "boundary",
-      "path": "agent/boundaries.toml",
-      "problem": "`Contract and boundary integrity` scored 83 below the standard floor of 85",
-      "agent_fix": "add generated contracts and boundary checks for public APIs, data access, and cross-runtime seams",
+      "severity": "high",
+      "category": "generated",
+      "path": "agent/generated-zones.toml",
+      "problem": "generated zone file `target/` is missing",
+      "agent_fix": "regenerate `target/` using the declared command, or remove the zone entry if the file was deleted intentionally",
       "evidence": [
-        "generated contract artifacts found",
-        "boundary manifest present",
-        "machine-readable schemas present",
-        "Rust typed boundary helpers found"
+        "generated zone integrity violation"
       ],
-      "check_id": "HLT-007-HANDWRITTEN-CONTRACT:boundary",
-      "hardness": "soft",
-      "confidence": 0.76,
+      "check_id": "HLT-002-GENERATED-MUTATION:generated",
+      "hardness": "hard",
+      "confidence": 0.95,
       "evidence_kind": "contract-manifest",
       "rerun_command": "just fast",
-      "fingerprint": "sha256:f99225a43e4f4f3117d63ea46aecacba7db7acea110598e70839bdd8ba8dda03",
-      "rule_id": "HLT-007-HANDWRITTEN-CONTRACT",
+      "fingerprint": "sha256:5426237a11233c74602294c2b6d8972d6256c78c8d467e736b858848adf5d755",
+      "rule_id": "HLT-002-GENERATED-MUTATION",
       "tlr": "Contracts/data",
       "lane": "contract",
-      "docs_url": "docs/audit-rubric.md#known-vibe-coding-insults",
-      "owner": "agent"
-    },
-    {
-      "severity": "medium",
-      "category": "data",
-      "path": "db/",
-      "problem": "`Data truth and workflow safety` scored 50 below the standard floor of 85",
-      "agent_fix": "move durable truth into migrations, constraints, adapters, and application-owned transactions",
-      "evidence": [
-        "Data truth and workflow safety scored 50"
-      ],
-      "check_id": "HLT-006-DIRECT-DB-WRONG-LAYER:data",
-      "hardness": "soft",
-      "confidence": 0.76,
-      "evidence_kind": "sql",
-      "rerun_command": "just fast",
-      "fingerprint": "sha256:6dc277f838aa42b508c136f6ba666d602ecefe226bc4c238b24388640ee21f82",
-      "rule_id": "HLT-006-DIRECT-DB-WRONG-LAYER",
-      "tlr": "Contracts/data",
-      "lane": "db",
-      "docs_url": "docs/audit-rubric.md#required-shape",
-      "owner": "tools"
+      "docs_url": "agent/JANKURAI_STANDARD.md#generated-zones",
+      "owner": "agent",
+      "line": 1
     }
   ],
   "agent_fix_queue": [
     {
-      "path": "agent/boundaries.toml",
-      "priority": "medium",
-      "rule_id": "HLT-007-HANDWRITTEN-CONTRACT",
+      "path": "agent/generated-zones.toml",
+      "priority": "high",
+      "rule_id": "HLT-002-GENERATED-MUTATION",
       "tlr": "Contracts/data",
       "lane": "contract",
       "owner": "agent",
-      "task": "add generated contracts and boundary checks for public APIs, data access, and cross-runtime seams",
-      "why": "`Contract and boundary integrity` scored 83 below the standard floor of 85"
-    },
-    {
-      "path": "db/",
-      "priority": "medium",
-      "rule_id": "HLT-006-DIRECT-DB-WRONG-LAYER",
-      "tlr": "Contracts/data",
-      "lane": "db",
-      "owner": "tools",
-      "task": "move durable truth into migrations, constraints, adapters, and application-owned transactions",
-      "why": "`Data truth and workflow safety` scored 50 below the standard floor of 85"
+      "task": "regenerate `target/` using the declared command, or remove the zone entry if the file was deleted intentionally",
+      "why": "generated zone file `target/` is missing"
     },
     {
       "path": "Justfile",

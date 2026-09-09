@@ -1,7 +1,7 @@
 # jankurai-tools-tui
 
 <!-- jankurai-badge:start -->
-[![Jankurai score: 90/100](agent/jankurai-badge.svg)](agent/jankurai-badge.json)
+[![Jankurai score: 95/100](agent/jankurai-badge.svg)](agent/jankurai-badge.json)
 <!-- jankurai-badge:end -->
 
 [![ci](https://img.shields.io/github/actions/workflow/status/neverhuman/jankurai-tools-tui/ci.yml?branch=main&label=ci)](.github/workflows/ci.yml)
