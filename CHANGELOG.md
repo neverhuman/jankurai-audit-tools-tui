@@ -7,6 +7,10 @@ The authoritative version string lives in [`VERSION`](VERSION).
 
 ## [Unreleased]
 
+### Changed
+
+- `tuiwright` and `tuiwright-cli` package versions are `1.7.1`, matching the public CLI release.
+
 ### Added
 
 - Root `Justfile` command surface with `setup`, `fast`, `check`, `security`, and
