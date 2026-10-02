@@ -9,7 +9,7 @@ The authoritative version string lives in [`VERSION`](VERSION).
 
 ### Changed
 
-- `tuiwright` and `tuiwright-cli` package versions are `1.7.1`, matching the public CLI release.
+- `tuiwright` and `tuiwright-cli` package versions are `1.7.2`, matching the public CLI release (was `1.7.1`).
 
 ### Added
 
