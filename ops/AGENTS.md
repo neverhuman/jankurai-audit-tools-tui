@@ -14,10 +14,8 @@ This directory holds the pinned CI script entrypoints for jankurai-tools-tui.
 
 ## Forbidden
 
-- Do not inline lane logic into `.github/workflows/ci.yml`; the workflow must stay
-  thin and delegate to `ops/ci/<lane>.sh` so local and CI runs match.
-- Do not unpin a GitHub Action; every third-party `uses:` is pinned to a
-  40-character commit SHA.
+- Do not add GitHub Actions workflows; GitHub is a publishing mirror only. CI
+  calls `ops/ci/<lane>.sh` so local and CI runs match.
 - Do not write durable product truth or generated output here.
 
 ## Proof lane

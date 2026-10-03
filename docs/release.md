@@ -27,10 +27,8 @@ Releases are cut by CI, not by hand:
    [`CHANGELOG.md`](../CHANGELOG.md).
 2. Run the full local gate: `just check` (format, lint, fast lane, security,
    self-audit).
-3. Push the version commit. The
-   [`ci.yml`](../.github/workflows/ci.yml) workflow runs the build, security,
-   jankurai audit, and tool-adoption jobs and uploads the `repo-score` and
-   `tool-adoption-evidence` artifacts.
+3. Push the version commit through a forge pull request. CI on the forge and
+   our hosts runs the build, security, jankurai audit, and tool-adoption lanes.
 4. Tag the release commit with `jankurai-tools-tui-v<version>-split.<N>`. The tag
    mirror in [`.jeryu/repo.toml`](../.jeryu/repo.toml) publishes the immutable
    tag to the public GitHub mirror.
@@ -47,8 +45,9 @@ Release builds depend on immutable tags, never branches.
 - **Provenance**: the security job runs `gitleaks detect` for secret scanning and
   `cargo audit` for advisory checks; the audit job publishes the signed
   `repo-score` artifacts that prove the release passed the jankurai gate.
-- **Action pinning**: every third-party GitHub Action is pinned to a 40-character
-  commit SHA so the supply chain of the release pipeline itself is fixed.
+- **Build hosts**: GitHub is a publishing mirror and runs no workflows. Releases
+  are built and signed on our servers; a separate change introduces key-based
+  release signing.
 
 ## Launch gate
 
@@ -67,7 +66,7 @@ with artifacts, that the operational controls are in place:
   immutable tag and committed `Cargo.lock`.
 - **Abuse controls / rate limit**: the CLI and library perform no network calls
   and spawn only the application under test, so there is no external rate limit
-  or abuse surface to budget; CI jobs are bounded by `timeout-minutes`.
+  or abuse surface to budget; CI lanes are bounded by runner timeouts.
 
 ## Rollback
 

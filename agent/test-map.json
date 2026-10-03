@@ -77,10 +77,6 @@
       "command": "bash scripts/ci-local.sh required",
       "purpose": "verify the canonical security lane wrapper stays present"
     },
-    ".github/": {
-      "command": "bash scripts/ci-local.sh required",
-      "purpose": "verify CI workflow entrypoints stay pinned and thin"
-    },
     ".gitignore": {
       "command": "bash scripts/ci-local.sh required",
       "purpose": "verify the exclusion list keeps transient build paths untracked"

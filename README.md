@@ -4,8 +4,6 @@
 [![Jankurai score: 95/100](agent/jankurai-badge.svg)](agent/jankurai-badge.json)
 <!-- jankurai-badge:end -->
 
-[![ci](https://img.shields.io/github/actions/workflow/status/neverhuman/jankurai-tools-tui/ci.yml?branch=main&label=ci)](.github/workflows/ci.yml)
-
 Playwright-style black-box testing for terminal user interfaces. This repository
 is one member of the Jankurai split family; read [`SPLIT.md`](SPLIT.md) for the
 family contract and [`AGENTS.md`](AGENTS.md) for agent routing rules.
@@ -30,9 +28,9 @@ just check
 ```
 
 The full command surface lives in the root [`Justfile`](Justfile). Continuous
-integration runs the same lanes under
-[`.github/workflows/ci.yml`](.github/workflows/ci.yml) via the pinned scripts in
-[`ops/ci/`](ops/ci).
+integration runs the same lanes on the forge and our own hosts via the pinned
+scripts in [`ops/ci/`](ops/ci). GitHub is a publishing mirror only; it runs no
+workflows. Releases are built and signed on our servers.
 
 ## Layout
 

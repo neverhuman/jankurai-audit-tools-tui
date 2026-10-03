@@ -44,13 +44,11 @@ narrow:
 
 # Security lane: the full supply-chain posture in one entrypoint.
 # gitleaks scans for committed secrets; cargo audit checks the Rust dependency
-# tree; syft emits a CycloneDX SBOM; actionlint and zizmor lint the workflows.
+# tree; syft emits a CycloneDX SBOM.
 security:
     gitleaks detect --source . --no-banner --redact
     cargo audit
     syft dir:. -o cyclonedx-json=target/jankurai/security/sbom.json
-    actionlint
-    zizmor .github/workflows
 
 # Jankurai self-audit lane: writes the repo-score artifacts that CI uploads.
 audit:

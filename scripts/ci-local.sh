@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Local CI runner. Routes each lane to the same ops/ci/<lane>.sh script that
-# GitHub Actions runs, so a green local run means a green CI run.
+# the CI hosts run, so a green local run means a green CI run.
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 

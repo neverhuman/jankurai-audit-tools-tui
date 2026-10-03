@@ -2,7 +2,7 @@ schema_version = "1.0.0"
 
 # Adopted jankurai tool lanes for jankurai-tools-tui. Each tool below replaces a
 # fleet of ad-hoc tools with a first-class jankurai subcommand; the matching CI
-# evidence is produced by ops/ci/tool-adoption.sh and uploaded by ci.yml.
+# evidence is produced by ops/ci/tool-adoption.sh.
 
 [[tools]]
 id = "audit-ci"
