@@ -7,6 +7,15 @@ The authoritative version string lives in [`VERSION`](VERSION).
 
 ## [Unreleased]
 
+## [1.7.5] - 2026-10-14
+
+`VERSION` is `1.7.5-split.0`.
+
+### Changed
+
+- `tuiwright` and `tuiwright-cli` package versions are `1.7.5`, matching the public CLI release (was `1.7.4`).
+- `agent/standard-version.toml` declares `auditor_version = "1.7.5"`, the family auditor pin.
+
 ## [1.7.4] - 2026-10-14
 
 `VERSION` is `1.7.4-split.0`.
