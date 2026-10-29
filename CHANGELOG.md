@@ -7,6 +7,14 @@ The authoritative version string lives in [`VERSION`](VERSION).
 
 ## [Unreleased]
 
+## [1.7.6] - 2026-10-29
+
+The Tuiwright libraries and CLI align to the 1.7.6 family release.
+Generated from the released member pin `21c356df5468847b5563de60b5c1521ea9b8fdb0`:
+
+- ci: expose existing required proof to the hosted runner
+Todo: 20261029-022837-282b12
+
 ## [1.7.5] - 2026-10-14
 
 `VERSION` is `1.7.5-split.0`.
